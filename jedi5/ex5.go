@@ -2,8 +2,8 @@ package jedi5
 
 import (
 	"fmt"
-	"runtime"
 	"sync"
+	"sync/atomic"
 )
 
 // Ex5 tbd
@@ -12,17 +12,13 @@ func Ex5() {
 
 	var wg sync.WaitGroup
 
-	incrementor := 0
+	var incrementor int64
 	gs := 100
 	wg.Add(gs)
 
 	for i := 0; i < gs; i++ {
 		go func() {
-			v := incrementor
-
-			runtime.Gosched()
-
-			incrementor = v
+			atomic.AddInt64(&incrementor, 1)
 
 			wg.Done()
 		}()
