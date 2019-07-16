@@ -1,4 +1,4 @@
-package jedi3
+package jedi5
 
 import (
 	"fmt"
@@ -6,9 +6,9 @@ import (
 	"sync"
 )
 
-// Ex3 tbd
-func Ex3() {
-	fmt.Println("\nEx3")
+// Ex5 tbd
+func Ex5() {
+	fmt.Println("\nEx5")
 
 	var wg sync.WaitGroup
 
@@ -22,7 +22,6 @@ func Ex3() {
 
 			runtime.Gosched()
 
-			v++
 			incrementor = v
 
 			wg.Done()

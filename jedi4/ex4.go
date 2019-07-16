@@ -1,14 +1,13 @@
-package jedi3
+package jedi4
 
 import (
 	"fmt"
-	"runtime"
 	"sync"
 )
 
-// Ex3 tbd
-func Ex3() {
-	fmt.Println("\nEx3")
+// Ex4 tbd
+func Ex4() {
+	fmt.Println("\nEx4")
 
 	var wg sync.WaitGroup
 
@@ -16,15 +15,17 @@ func Ex3() {
 	gs := 100
 	wg.Add(gs)
 
+	var mu sync.Mutex
+
 	for i := 0; i < gs; i++ {
 		go func() {
+			mu.Lock()
 			v := incrementor
-
-			runtime.Gosched()
 
 			v++
 			incrementor = v
 
+			mu.Unlock()
 			wg.Done()
 		}()
 	}
